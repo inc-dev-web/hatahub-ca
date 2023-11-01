@@ -1,0 +1,232 @@
+---
+import { Image } from 'astro:assets';
+
+import '@fontsource/merriweather/300.css';
+import '@fontsource/merriweather';
+import '@fontsource/open-sans/300.css';
+
+import heroBgImage from '../assets/hero-bg-image.jpg'
+import logoImage from '../assets/logo.svg'
+import logoDarkImage from '../assets/logo-dark.svg'
+
+import Layout from '../layouts/Layout.astro';
+import AppButton from '../components/AppButton.astro';
+
+import thumbUpIcon from '../assets/icons/thumb-up.svg'
+import outlineDiamondIcon from '../assets/icons/outline-diamond.svg'
+import personIcon from '../assets/icons/person.svg'
+import gearIcon from '../assets/icons/gear.svg'
+
+import arrowBackIcon from '../assets/icons/arrow-back.svg'
+import arrowForwardIcon from '../assets/icons/arrow-forward.svg'
+
+import interior1 from '../assets/interior-1.jpg'
+import interior2 from '../assets/interior-2.jpg'
+import Icon from 'astro-icon';
+
+const features = [
+	{
+		title: 'Efficient',
+		icon: thumbUpIcon
+	},
+	{
+		title: 'High-Quality',
+		icon: outlineDiamondIcon
+	},
+	{
+		title: 'Professional',
+		icon: personIcon
+	},
+	{
+		title: 'Customizable',
+		icon: gearIcon
+	},
+]
+
+const offers = [
+	{
+		imageUrl: interior1,
+		oldPrice: 100,
+		newPrice: 50
+	},
+	{
+		imageUrl: interior1,
+		oldPrice: 100,
+		newPrice: 50
+	},
+	{
+		imageUrl: interior1,
+		oldPrice: 100,
+		newPrice: 50
+	},
+	{
+		imageUrl: interior1,
+		oldPrice: 100,
+		newPrice: 50
+	},
+]
+---
+
+<Layout>
+	<div class="relative grid place-items-center w-full h-[100dvh]">
+		<header class="absolute left-1/2 -translate-x-1/2 top-0 w-[1000px] flex flex-row items-center justify-between z-[30] pt-6">
+			<Image height={100} src={logoImage} alt="HataHub logo"/>
+			<div class="flex flex-row gap-10 items-center hover:[&>a]:underline">
+				<a href="#">home</a>
+				<a href="#">about</a>
+				<a href="#">products</a>
+				<a href="#">offers</a>
+				<a href="#">contact</a>
+			</div>
+			<AppButton buttonStyle='outline'>order</AppButton>
+		</header>
+
+		<div class="flex flex-col items-center relative z-[20] w-1/2 gap-6">
+			<h1 class="text-[80px] text-white">
+				H<span class="!font-heading text-[70px]">ATA</span>H<span class="!font-heading text-[70px]">UB</span>
+			</h1>
+			<span class="text-center ">lorem ipsum dolor, sit amet consectetur adipisicing elit. voluptates eos qui nam. amet tempora itaque inventore dolorum, debitis optio officia repellat consequatur doloremque dolore, minima reprehenderit id obcaecati excepturi sint.</span>
+			<AppButton buttonStyle='outline'>learn more</AppButton>
+		</div>
+
+		<!-- Background image -->
+		<div class="absolute w-full h-full left-0 top-0 backdrop-brightness-50 z-[10]"> </div>
+		<Image class='absolute w-full h-full left-0 top-0 object-cover z-[5]' src={heroBgImage} alt='Hero Bg Image' />
+	</div>
+	<section id="features">
+		<div class="container flex justify-around mx-auto py-16">
+			{features.map((feature) => (
+				<div class="flex flex-col items-center gap-6">
+					<span class="text-black/90">{feature.title}</span>
+					<Image class="opacity-[90%]" width={40} alt={`${feature.title} icon`} src={feature.icon}/>
+				</div>
+			))}
+		</div>
+	</section>
+	<Image class="object-cover h-[200px] opacity-[60%]" src={interior1} alt='Interior image'/>
+	<section class="py-20" id="aboutUs">
+		<div class="container mx-auto grid grid-cols-2 gap-32">
+			<Image class="object-cover aspect-square" src={interior2} alt="About us section image"/>
+			<div class="flex flex-col items-start justify-center gap-6 text-black">
+				<h2 class="text-[60px]">A<span class="text-[50px]">BOUT US</span></h2>
+				<span>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor molestiae laudantium quam repudiandae quas, consectetur vel ab quo enim reprehenderit, accusantium fugiat, cum iusto accusamus neque quis expedita sed! Omnis.
+				</span>
+				<span>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor molestiae laudantium quam repudiandae quas, consectetur vel ab quo enim reprehenderit, accusantium fugiat, cum iusto accusamus neque quis expedita sed! Omnis.
+				</span>
+				<AppButton buttonStyle='success'>learn more</AppButton>
+			</div>
+		</div>
+	</section>
+	<section class="py-20" id="products">
+		<div class="container mx-auto grid grid-cols-2 gap-32">
+			<div class="flex flex-col items-start justify-center gap-6 text-black">
+				<h2 class="text-[60px]">P<span class="text-[50px]">RODUCTS</span></h2>
+				<span>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor molestiae laudantium quam repudiandae quas, consectetur vel ab quo enim reprehenderit, accusantium fugiat, cum iusto accusamus neque quis expedita sed! Omnis.
+				</span>
+				<span>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor molestiae laudantium quam repudiandae quas, consectetur vel ab quo enim reprehenderit, accusantium fugiat, cum iusto accusamus neque quis expedita sed! Omnis.
+				</span>
+				<AppButton buttonStyle='success'>learn more</AppButton>
+			</div>
+			<Image class="object-cover aspect-square" src={interior2} alt="About us section image"/>
+		</div>
+	</section>
+	<section class="py-20 text-black" id="specialOffers">
+		<h2 class="text-[60px] text-center mb-12">S<span class="text-[50px]">PECIAL</span>&nbsp;O<span class="text-[50px]">FFERS</span></h2>
+		<div class="relative container mx-auto">
+			<button id="sliderButtonPrev" class="absolute top-1/2 left-0 hover:cursor-pointer z-[30]">
+				<Image src={arrowBackIcon} alt='Arrow back icon'/>
+			</button>
+			<swiper-container id="sliderContainer" initial-slide="1" effect="cards" slides-per-view="3" centered-slides="true" cards-effect-per-slide-offset="30" cards-effect-rotate="false">
+				{offers.map((offer, index) => (
+					<swiper-slide class="opacity-50 [&.swiper-slide-active]:!opacity-100 transition-all">
+						<div class="relative aspect-[1/2]">
+							<Image class="h-full w-full object-cover" src={offer.imageUrl} alt={`Offer ${index} image`}/>
+							<div class="absolute right-[30px] top-[30px] flex flex-col items-stretch gap-2">
+								<div class="text-white px-8 py-3"><s>{offer.oldPrice} $CAD</s></div>
+								<div class="bg-[#28E48E] px-8 py-3">{offer.newPrice} $CAD</div>
+							</div>
+						</div>
+					</swiper-slide>
+				))}
+			</swiper-container>
+			<button id="sliderButtonNext" class="absolute top-1/2 right-0 hover:cursor-pointer z-[30]">
+				<Image src={arrowForwardIcon} alt='Arrow forward icon'/>
+			</button>
+		</div>
+		<div class="w-[500px] mx-auto text-center mt-[100px]">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor, quaerat perferendis, voluptates quidem animi cupiditate, eum rem odio aperiam necessitatibus dolorem aliquid optio voluptate aliquam! Amet voluptates eaque sunt! Sapiente!</div>
+		<AppButton class="mx-auto mt-4" buttonStyle='success'>learn more</AppButton>
+	</section>
+	<footer class="bg-[#E1E0DA] text-black">
+		<div class="container mx-auto grid grid-cols-[1fr_2fr] py-10">
+			<div class="flex flex-col items-stretch gap-12">
+				<div class="flex flex-row items-center gap-4">
+					<Image height={100} src={logoDarkImage} alt='Footer HataHub logo'/>
+					<h2 class="text-[60px] leading-[1]">
+						H<span class="!font-heading text-[50px]">ATA</span>H<span class="!font-heading text-[50px]">UB</span>
+					</h2>
+				</div>
+				<div class="grid grid-cols-2 auto-rows-auto gap-y-8 opacity-80">
+					<span class="text-4xl font-normal col-span-2">
+						Contact us
+					</span>
+					<a href="tel:+0000000000" class="flex flex-row gap-4 items-center">
+						<Icon class="h-[30px]" name="mdi:phone"/>
+						<span>+0000000000</span>
+					</a>
+					<a href="mailto:mail@hatahub.ca" class="flex flex-row gap-4 items-center">
+						<Icon class="h-[30px]" name="mdi:email"/>
+						<span>mail@hatahub.ca</span>
+					</a>
+					<div class="flex flex-row gap-4 items-center">
+						<a href="https://facebook.com">
+							<Icon class="h-[30px]" name="mdi:facebook"/>
+						</a>
+						<a href="https://instagram.com">
+							<Icon class="h-[30px]" name="mdi:instagram"/>
+						</a>
+					</div>
+				</div>
+				<div class="grid grid-cols-2 auto-rows-auto gap-y-8 opacity-80">
+					<span class="text-4xl font-normal col-span-2">
+						Where are we?
+					</span>
+					<span>Canada, Toronto</span>
+					<span>USA, New Mexico</span>
+				</div>
+			</div>
+		</div>
+	</footer>
+</Layout>
+
+<style>
+body {
+	@apply font-main font-light text-white tracking-widest;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	@apply font-heading font-light;
+}
+</style>
+
+<script>
+import { register, type SwiperContainer } from 'swiper/element/bundle';
+register()
+
+document.addEventListener('DOMContentLoaded', () => {
+	const swiperContainer = document.getElementById('sliderContainer') as SwiperContainer
+	const prevButton = document.getElementById('sliderButtonPrev')
+	const nextButton = document.getElementById('sliderButtonNext')
+
+	prevButton?.addEventListener('click', () => {
+		swiperContainer.swiper.slidePrev()
+	})
+
+	nextButton?.addEventListener('click', () => {
+		swiperContainer.swiper.slideNext()
+	})
+})
+</script>
