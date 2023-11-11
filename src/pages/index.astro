@@ -5,7 +5,7 @@ import '@fontsource/merriweather/300.css';
 import '@fontsource/merriweather';
 import '@fontsource/open-sans/300.css';
 
-import heroBgImage from '../assets/hero-bg-image.jpg'
+import heroBgImage from '../assets/hero-bg-image.png'
 import logoImage from '../assets/logo.svg'
 import logoDarkImage from '../assets/logo-dark.svg'
 
@@ -19,6 +19,7 @@ import gearIcon from '../assets/icons/gear.svg'
 
 import arrowBackIcon from '../assets/icons/arrow-back.svg'
 import arrowForwardIcon from '../assets/icons/arrow-forward.svg'
+import worldMap from '../assets/world.svg'
 
 import interior1 from '../assets/interior-1.jpg'
 import interior2 from '../assets/interior-2.jpg'
@@ -68,25 +69,27 @@ const offers = [
 ---
 
 <Layout>
-	<div class="relative grid place-items-center w-full h-[100dvh]">
-		<header class="absolute left-1/2 -translate-x-1/2 top-0 w-[1000px] flex flex-row items-center justify-between z-[30] pt-6">
-			<Image height={100} src={logoImage} alt="HataHub logo"/>
-			<div class="flex flex-row gap-10 items-center hover:[&>a]:underline">
-				<a href="#">home</a>
-				<a href="#">about</a>
-				<a href="#">products</a>
-				<a href="#">offers</a>
-				<a href="#">contact</a>
+	<div class="relative grid place-items-center w-full h-[100dvh]" id="home">
+		<header id="mainHeader" class="fixed left-0 top-0 w-full flex flex-col items-center z-[30] py-3 transition-all">
+			<div class="container flex flex-row items-center justify-between">
+				<Image height={80} src={logoImage} alt="HataHub logo"/>
+				<div class="flex flex-row gap-10 items-center hover:[&>a]:underline">
+					<a href="#home">home</a>
+					<a href="#aboutUs">about us</a>
+					<a href="#products">products</a>
+					<!-- <a href="#">cooperation</a> -->
+					<a href="#footer">contacts</a>
+				</div>
 			</div>
-			<AppButton buttonStyle='outline'>order</AppButton>
+			<!-- <AppButton buttonStyle='outline'>order</AppButton> -->
 		</header>
 
-		<div class="flex flex-col items-center relative z-[20] w-1/2 gap-6">
-			<h1 class="text-[80px] text-white">
-				H<span class="!font-heading text-[70px]">ATA</span>H<span class="!font-heading text-[70px]">UB</span>
+		<div class="flex flex-col items-center relative z-[20] w-3/4 text-center gap-6">
+			<h1 class="text-[60px] text-white">
+				European Window and Door Excellence – Now in Canada
 			</h1>
-			<span class="text-center ">lorem ipsum dolor, sit amet consectetur adipisicing elit. voluptates eos qui nam. amet tempora itaque inventore dolorum, debitis optio officia repellat consequatur doloremque dolore, minima reprehenderit id obcaecati excepturi sint.</span>
-			<AppButton buttonStyle='outline'>learn more</AppButton>
+			<span class="text-center ">Step into a realm of sophisticated style and unmatched efficiency with our European window and door systems. Crafted to meet the highest standards of quality, our products are designed to bring your boldest design visions to life while ensuring peak energy efficiency and durability. Get a personalized quote today and discover how we can transform your space into a vision of elegance</span>
+			<AppButton buttonStyle='outline' href="#contact">get a quote</AppButton>
 		</div>
 
 		<!-- Background image -->
@@ -110,12 +113,9 @@ const offers = [
 			<div class="flex flex-col items-start justify-center gap-6 text-black">
 				<h2 class="text-[60px]">A<span class="text-[50px]">BOUT US</span></h2>
 				<span>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor molestiae laudantium quam repudiandae quas, consectetur vel ab quo enim reprehenderit, accusantium fugiat, cum iusto accusamus neque quis expedita sed! Omnis.
+					Discover the epitome of European sophistication with HATAHUB LTD, your premier source for exquisitely crafted aluminum and uPVC windows and doors in Ontario. Situated in the heart of Toronto, we extend our reach to cities such as London, Ottawa, Windsor, Hamilton, and beyond, imparting a touch of European finesse to every corner of the province. Our collection features German-engineered windows and doors that embody a legacy of unparalleled quality and precision. Emphasizing high-grade German profiles and hardware, our products transcend mere installations—they are statements of luxury and efficiency. Our unwavering commitment to authenticity ensures that each piece we offer is a genuine European creation, meticulously designed to enhance the architecture and ambiance of your home.
 				</span>
-				<span>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor molestiae laudantium quam repudiandae quas, consectetur vel ab quo enim reprehenderit, accusantium fugiat, cum iusto accusamus neque quis expedita sed! Omnis.
-				</span>
-				<AppButton buttonStyle='success'>learn more</AppButton>
+				<AppButton buttonStyle='success' href="#contact">get a quote</AppButton>
 			</div>
 		</div>
 	</section>
@@ -124,17 +124,14 @@ const offers = [
 			<div class="flex flex-col items-start justify-center gap-6 text-black">
 				<h2 class="text-[60px]">P<span class="text-[50px]">RODUCTS</span></h2>
 				<span>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor molestiae laudantium quam repudiandae quas, consectetur vel ab quo enim reprehenderit, accusantium fugiat, cum iusto accusamus neque quis expedita sed! Omnis.
+					Whether you're undertaking renovations in London, constructing a new residence in Ottawa, rejuvenating your estate in Windsor, or updating a historic home in Hamilton, our doors and windows come with a promise: to deliver unparalleled European quality and performance. We provide an extensive array of colors and styles, carefully curated to complement the diverse Canadian palette and preferences. Rest assured, our products are backed by up to a 7-year warranty, ensuring enduring satisfaction. Through our direct collaboration with a distinguished Ukrainian manufacturer, we not only guarantee European quality but also remarkable turnaround times, with production and delivery achievable within 8 weeks. HATAHUB LTD is dedicated to bringing European standards to Canadian soil, ensuring that, no matter where you are in Ontario, you can experience the pinnacle of European craftsmanship.
 				</span>
-				<span>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor molestiae laudantium quam repudiandae quas, consectetur vel ab quo enim reprehenderit, accusantium fugiat, cum iusto accusamus neque quis expedita sed! Omnis.
-				</span>
-				<AppButton buttonStyle='success'>learn more</AppButton>
+				<AppButton buttonStyle='success' href="#contact">get a quote</AppButton>
 			</div>
-			<Image class="object-cover aspect-square" src={interior2} alt="About us section image"/>
+			<Image class="object-[100%] aspect-square" src={worldMap} alt="About us section image"/>
 		</div>
 	</section>
-	<section class="py-20 text-black" id="specialOffers">
+	<!-- <section class="py-20 text-black" id="specialOffers">
 		<h2 class="text-[60px] text-center mb-12">S<span class="text-[50px]">PECIAL</span>&nbsp;O<span class="text-[50px]">FFERS</span></h2>
 		<div class="relative container mx-auto">
 			<button id="sliderButtonPrev" class="absolute top-1/2 left-0 hover:cursor-pointer z-[30]">
@@ -159,8 +156,34 @@ const offers = [
 		</div>
 		<div class="w-[500px] mx-auto text-center mt-[100px]">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor, quaerat perferendis, voluptates quidem animi cupiditate, eum rem odio aperiam necessitatibus dolorem aliquid optio voluptate aliquam! Amet voluptates eaque sunt! Sapiente!</div>
 		<AppButton class="mx-auto mt-4" buttonStyle='success'>learn more</AppButton>
+	</section> -->
+	<section class="text-black" id="contact">
+		<h2 class="text-[60px] text-center mb-12">G<span class="text-[50px]">ET</span>&nbsp;A Q<span class="text-[50px]">UOTE</span></h2>
+		<form action="#" class="w-[400px] flex flex-col items-stretch gap-3 mx-auto [&>label]:flex [&>label]:flex-col [&>label]:items-stretch">
+			<label class="flex flex-col items-stretch gap-1">
+				Name*
+				<input placeholder="Enter your name here (required)" class="border border-[#608273]/50 py-2 pl-5 rounded-md" type="text" required/>
+			</label>
+			<label class="flex flex-col items-stretch gap-1">
+				E-mail*
+				<input placeholder="Enter your e-mail here (required)" class="border border-[#608273]/50 py-2 pl-5 rounded-md" type="email" required/>
+			</label>
+			<label class="flex flex-col items-stretch gap-1">
+				Phone number
+				<input placeholder="Enter your phone number here (optional)" class="border border-[#608273]/50 py-2 pl-5 rounded-md" type="text" required/>
+			</label>
+			<label class="flex flex-col items-stretch gap-1">
+				Additional information
+				<textarea placeholder="Enter additional information here (optional)" class="border border-[#608273]/50 py-2 pl-5 rounded-md" required/>
+			</label>
+			<label class="flex flex-col items-stretch gap-1">
+				Attachment (optional)
+				<input class="border border-[#608273]/50 rounded-lg bg-[#608273]/20 pl-2 py-2 hover:cursor-pointer" type="file"/>
+			</label>
+			<input class="px-16 py-3 bg-[#28E48E] text-white shadow rounded-lg" type="submit"/>
+		</form>
 	</section>
-	<footer class="bg-[#E1E0DA] text-black">
+	<footer id="footer" class="bg-[#E1E0DA] text-black mt-16">
 		<div class="container mx-auto grid grid-cols-[1fr_2fr] py-10">
 			<div class="flex flex-col items-stretch gap-12">
 				<div class="flex flex-row items-center gap-4">
@@ -173,20 +196,23 @@ const offers = [
 					<span class="text-4xl font-normal col-span-2">
 						Contact us
 					</span>
-					<a href="tel:+0000000000" class="flex flex-row gap-4 items-center">
+					<a href="tel:+16475585577" class="flex flex-row gap-4 items-center">
 						<Icon class="h-[30px]" name="mdi:phone"/>
-						<span>+0000000000</span>
+						<span>+1 (647) 558-5577</span>
 					</a>
-					<a href="mailto:mail@hatahub.ca" class="flex flex-row gap-4 items-center">
+					<a href="mailto:info@hatahub.ca" class="flex flex-row gap-4 items-center">
 						<Icon class="h-[30px]" name="mdi:email"/>
-						<span>mail@hatahub.ca</span>
+						<span>info@hatahub.ca</span>
 					</a>
 					<div class="flex flex-row gap-4 items-center">
-						<a href="https://facebook.com">
+						<a href="https://www.facebook.com/profile.php?id=61552284022721">
 							<Icon class="h-[30px]" name="mdi:facebook"/>
 						</a>
-						<a href="https://instagram.com">
+						<a href="https://www.instagram.com/hatahub.ca/">
 							<Icon class="h-[30px]" name="mdi:instagram"/>
+						</a>
+						<a href="https://www.linkedin.com/in/alex-hatahub-433a9a294">
+							<Icon class="h-[30px]" name="mdi:linkedin"/>
 						</a>
 					</div>
 				</div>
@@ -194,8 +220,7 @@ const offers = [
 					<span class="text-4xl font-normal col-span-2">
 						Where are we?
 					</span>
-					<span>Canada, Toronto</span>
-					<span>USA, New Mexico</span>
+					<span>Toronto, Ontario</span>
 				</div>
 			</div>
 		</div>
@@ -229,4 +254,32 @@ document.addEventListener('DOMContentLoaded', () => {
 		swiperContainer.swiper.slideNext()
 	})
 })
+
+const handleScroll = () => {
+	const headerElement = document.getElementById('mainHeader')
+	if(!headerElement) return
+
+	if(window.scrollY <= 10) {
+		headerElement.style.background = 'rgba(0,0,0,0)'
+	} else {
+		headerElement.style.background = 'rgba(0,0,0,0.7)'
+	}
+}
+
+document.addEventListener('scroll', handleScroll)
+handleScroll()
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+	anchor.addEventListener('click', function (e) {
+		e.preventDefault();
+
+		const href = (e.target as HTMLAnchorElement | null)?.getAttribute('href')
+
+		if(!href) return
+
+		document.querySelector(href)?.scrollIntoView({
+			behavior: 'smooth'
+		});
+	});
+});
 </script>

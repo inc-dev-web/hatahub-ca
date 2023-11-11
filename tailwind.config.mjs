@@ -5,7 +5,7 @@ export default {
 		extend: {
 			fontFamily: {
 				heading: ['Open Sans', 'ui-monspace', 'ui-sans-serif', 'system-ui'],
-				main: ['Merriweather', 'ui-monospace', 'system-ui']
+				main: ['Hanken Grotesk', 'ui-monospace', 'system-ui']
 			}
 		},
 	},
