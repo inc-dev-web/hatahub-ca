@@ -17,8 +17,8 @@ import outlineDiamondIcon from '../assets/icons/outline-diamond.svg'
 import personIcon from '../assets/icons/person.svg'
 import gearIcon from '../assets/icons/gear.svg'
 
-import arrowBackIcon from '../assets/icons/arrow-back.svg'
-import arrowForwardIcon from '../assets/icons/arrow-forward.svg'
+// import arrowBackIcon from '../assets/icons/arrow-back.svg'
+// import arrowForwardIcon from '../assets/icons/arrow-forward.svg'
 import worldMap from '../assets/world.svg'
 
 import interior1 from '../assets/interior-1.jpg'
@@ -73,22 +73,20 @@ const offers = [
 		<header id="mainHeader" class="fixed left-0 top-0 w-full flex flex-col items-center z-[30] py-3 transition-all">
 			<div class="container flex flex-row items-center justify-between">
 				<Image height={80} src={logoImage} alt="HataHub logo"/>
-				<div class="flex flex-row gap-10 items-center hover:[&>a]:underline">
+				<div class="hidden lg:flex flex-row gap-10 items-center hover:[&>a]:underline">
 					<a href="#home">home</a>
 					<a href="#aboutUs">about us</a>
 					<a href="#products">products</a>
-					<!-- <a href="#">cooperation</a> -->
 					<a href="#footer">contacts</a>
 				</div>
 			</div>
-			<!-- <AppButton buttonStyle='outline'>order</AppButton> -->
 		</header>
 
 		<div class="flex flex-col items-center relative z-[20] w-3/4 text-center gap-6">
-			<h1 class="text-[60px] text-white">
+			<h1 class="text-[30px] lg:text-[60px] text-white">
 				European Window and Door Excellence – Now in Canada
 			</h1>
-			<span class="text-center ">Step into a realm of sophisticated style and unmatched efficiency with our European window and door systems. Crafted to meet the highest standards of quality, our products are designed to bring your boldest design visions to life while ensuring peak energy efficiency and durability. Get a personalized quote today and discover how we can transform your space into a vision of elegance</span>
+			<span class="text-center text-sm lg:text-base">Step into a realm of sophisticated style and unmatched efficiency with our European window and door systems. Crafted to meet the highest standards of quality, our products are designed to bring your boldest design visions to life while ensuring peak energy efficiency and durability. Get a personalized quote today and discover how we can transform your space into a vision of elegance</span>
 			<AppButton buttonStyle='outline' href="#contact">get a quote</AppButton>
 		</div>
 
@@ -97,7 +95,7 @@ const offers = [
 		<Image class='absolute w-full h-full left-0 top-0 object-cover z-[5]' src={heroBgImage} alt='Hero Bg Image' />
 	</div>
 	<section id="features">
-		<div class="container flex justify-around mx-auto py-16">
+		<div class="container flex flex-col lg:flex-row justify-around mx-auto py-16">
 			{features.map((feature) => (
 				<div class="flex flex-col items-center gap-6">
 					<span class="text-black/90">{feature.title}</span>
@@ -108,7 +106,7 @@ const offers = [
 	</section>
 	<Image class="object-cover h-[200px] opacity-[60%]" src={interior1} alt='Interior image'/>
 	<section class="py-20" id="aboutUs">
-		<div class="container mx-auto grid grid-cols-2 gap-32">
+		<div class="container mx-auto flex flex-col items-stretch lg:grid grid-cols-2 gap-6 lg:gap-32">
 			<Image class="object-cover aspect-square" src={interior2} alt="About us section image"/>
 			<div class="flex flex-col items-start justify-center gap-6 text-black">
 				<h2 class="text-[60px]">A<span class="text-[50px]">BOUT US</span></h2>
@@ -120,10 +118,10 @@ const offers = [
 		</div>
 	</section>
 	<section class="py-20" id="products">
-		<div class="container mx-auto grid grid-cols-2 gap-32">
-			<div class="flex flex-col items-start justify-center gap-6 text-black">
-				<h2 class="text-[60px]">P<span class="text-[50px]">RODUCTS</span></h2>
-				<span>
+		<div class="container mx-auto flex flex-col-reverse items-stretch lg:grid grid-cols-2 gap-8 lg:gap-32">
+			<div class="flex flex-col items-end lg:items-start justify-center gap-6 text-black lg:text-left text-right">
+				<h2 class="text-[60px] ">P<span class="text-[50px]">RODUCTS</span></h2>
+				<span class="lg:text-left text-right">
 					Whether you're undertaking renovations in London, constructing a new residence in Ottawa, rejuvenating your estate in Windsor, or updating a historic home in Hamilton, our doors and windows come with a promise: to deliver unparalleled European quality and performance. We provide an extensive array of colors and styles, carefully curated to complement the diverse Canadian palette and preferences. Rest assured, our products are backed by up to a 7-year warranty, ensuring enduring satisfaction. Through our direct collaboration with a distinguished Ukrainian manufacturer, we not only guarantee European quality but also remarkable turnaround times, with production and delivery achievable within 8 weeks. HATAHUB LTD is dedicated to bringing European standards to Canadian soil, ensuring that, no matter where you are in Ontario, you can experience the pinnacle of European craftsmanship.
 				</span>
 				<AppButton buttonStyle='success' href="#contact">get a quote</AppButton>
@@ -131,35 +129,9 @@ const offers = [
 			<Image class="object-[100%] aspect-square" src={worldMap} alt="About us section image"/>
 		</div>
 	</section>
-	<!-- <section class="py-20 text-black" id="specialOffers">
-		<h2 class="text-[60px] text-center mb-12">S<span class="text-[50px]">PECIAL</span>&nbsp;O<span class="text-[50px]">FFERS</span></h2>
-		<div class="relative container mx-auto">
-			<button id="sliderButtonPrev" class="absolute top-1/2 left-0 hover:cursor-pointer z-[30]">
-				<Image src={arrowBackIcon} alt='Arrow back icon'/>
-			</button>
-			<swiper-container id="sliderContainer" initial-slide="1" effect="cards" slides-per-view="3" centered-slides="true" cards-effect-per-slide-offset="30" cards-effect-rotate="false">
-				{offers.map((offer, index) => (
-					<swiper-slide class="opacity-50 [&.swiper-slide-active]:!opacity-100 transition-all">
-						<div class="relative aspect-[1/2]">
-							<Image class="h-full w-full object-cover" src={offer.imageUrl} alt={`Offer ${index} image`}/>
-							<div class="absolute right-[30px] top-[30px] flex flex-col items-stretch gap-2">
-								<div class="text-white px-8 py-3"><s>{offer.oldPrice} $CAD</s></div>
-								<div class="bg-[#28E48E] px-8 py-3">{offer.newPrice} $CAD</div>
-							</div>
-						</div>
-					</swiper-slide>
-				))}
-			</swiper-container>
-			<button id="sliderButtonNext" class="absolute top-1/2 right-0 hover:cursor-pointer z-[30]">
-				<Image src={arrowForwardIcon} alt='Arrow forward icon'/>
-			</button>
-		</div>
-		<div class="w-[500px] mx-auto text-center mt-[100px]">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor, quaerat perferendis, voluptates quidem animi cupiditate, eum rem odio aperiam necessitatibus dolorem aliquid optio voluptate aliquam! Amet voluptates eaque sunt! Sapiente!</div>
-		<AppButton class="mx-auto mt-4" buttonStyle='success'>learn more</AppButton>
-	</section> -->
 	<section class="text-black" id="contact">
 		<h2 class="text-[60px] text-center mb-12">G<span class="text-[50px]">ET</span>&nbsp;A Q<span class="text-[50px]">UOTE</span></h2>
-		<form action="#" class="w-[400px] flex flex-col items-stretch gap-3 mx-auto [&>label]:flex [&>label]:flex-col [&>label]:items-stretch">
+		<form action="#" class="w-full lg:w-[400px] flex flex-col items-stretch gap-3 mx-auto [&>label]:flex [&>label]:flex-col [&>label]:items-stretch">
 			<label class="flex flex-col items-stretch gap-1">
 				Name*
 				<input placeholder="Enter your name here (required)" class="border border-[#608273]/50 py-2 pl-5 rounded-md" type="text" required/>
@@ -183,16 +155,16 @@ const offers = [
 			<input class="px-16 py-3 bg-[#28E48E] text-white shadow rounded-lg" type="submit"/>
 		</form>
 	</section>
-	<footer id="footer" class="bg-[#E1E0DA] text-black mt-16">
-		<div class="container mx-auto grid grid-cols-[1fr_2fr] py-10">
+	<footer id="footer" class="bg-[#E1E0DA] text-black mt-16 px-6">
+		<div class="container mx-auto flex flex-col items-stretch gap-2 lg:grid grid-cols-[1fr_2fr] py-10">
 			<div class="flex flex-col items-stretch gap-12">
 				<div class="flex flex-row items-center gap-4">
 					<Image height={100} src={logoDarkImage} alt='Footer HataHub logo'/>
-					<h2 class="text-[60px] leading-[1]">
-						H<span class="!font-heading text-[50px]">ATA</span>H<span class="!font-heading text-[50px]">UB</span>
+					<h2 class="text-[40px] lg:text-[60px] leading-[1]">
+						H<span class="!font-heading text-[30px] lg:text-[50px]">ATA</span>H<span class="!font-heading text-[30px] lg:text-[50px]">UB</span>
 					</h2>
 				</div>
-				<div class="grid grid-cols-2 auto-rows-auto gap-y-8 opacity-80">
+				<div class="flex flex-col items-stretch lg:grid grid-cols-2 auto-rows-auto gap-y-8 opacity-80">
 					<span class="text-4xl font-normal col-span-2">
 						Contact us
 					</span>
@@ -234,6 +206,10 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
 	@apply font-heading font-light;
+}
+
+section {
+	@apply lg:px-0 px-6;
 }
 </style>
 
