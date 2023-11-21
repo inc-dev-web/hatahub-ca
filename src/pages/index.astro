@@ -17,8 +17,8 @@ import outlineDiamondIcon from '../assets/icons/outline-diamond.svg'
 import personIcon from '../assets/icons/person.svg'
 import gearIcon from '../assets/icons/gear.svg'
 
-// import arrowBackIcon from '../assets/icons/arrow-back.svg'
-// import arrowForwardIcon from '../assets/icons/arrow-forward.svg'
+import arrowBackIcon from '../assets/icons/arrow-back.svg'
+import arrowForwardIcon from '../assets/icons/arrow-forward.svg'
 import worldMap from '../assets/world.svg'
 
 import interior1 from '../assets/interior-1.jpg'
@@ -44,39 +44,19 @@ const features = [
 	},
 ]
 
-const offers = [
-	{
-		imageUrl: interior1,
-		oldPrice: 100,
-		newPrice: 50
-	},
-	{
-		imageUrl: interior1,
-		oldPrice: 100,
-		newPrice: 50
-	},
-	{
-		imageUrl: interior1,
-		oldPrice: 100,
-		newPrice: 50
-	},
-	{
-		imageUrl: interior1,
-		oldPrice: 100,
-		newPrice: 50
-	},
-]
+const presentationSlides = Array.from({length: 26}, (_, i) => i + 1).map(value => `/presentation/${value}.jpg`)
 ---
 
 <Layout>
 	<div class="relative grid place-items-center w-full h-[100dvh]" id="home">
-		<header id="mainHeader" class="fixed left-0 top-0 w-full flex flex-col items-center z-[30] py-3 transition-all">
+		<header id="mainHeader" class="lg:fixed left-0 top-0 w-full flex flex-col items-center z-[30] py-3 transition-all">
 			<div class="container flex flex-row items-center justify-between">
 				<Image height={80} src={logoImage} alt="HataHub logo"/>
 				<div class="hidden lg:flex flex-row gap-10 items-center hover:[&>a]:underline">
 					<a href="#home">home</a>
 					<a href="#aboutUs">about us</a>
 					<a href="#products">products</a>
+					<a href="#presentation">presentation</a>
 					<a href="#footer">contacts</a>
 				</div>
 			</div>
@@ -129,7 +109,23 @@ const offers = [
 			<Image class="object-[100%] aspect-square" src={worldMap} alt="About us section image"/>
 		</div>
 	</section>
-	<section class="text-black" id="contact">
+	<section class="text-black relative" id="presentation">
+		<h2 class="text-[40px] lg:text-[60px] text-center mb-12">O<span class="text-[30px] lg:text-[50px]">UR</span> P<span class="text-[30px] lg:text-[50px]">RESENTATION</span></h2>
+		<button id="sliderButtonPrev" class="hidden lg:block absolute top-1/2 left-[40px] hover:cursor-pointer z-[30]">
+			<Image src={arrowBackIcon} alt='Arrow back icon'/>
+		</button>
+		<swiper-container class="max-w-[100dvw] overflow-hidden" id="sliderContainer" initial-slide="0" effect="cards" slides-per-view="1.5" centered-slides="true" cards-effect-per-slide-offset="20" cards-effect-rotate="false">
+			{presentationSlides.map((slide, index) => (
+				<swiper-slide class="opacity-50 [&.swiper-slide-active]:!opacity-100 transition-all w-[400px]">
+					<Image class="h-full w-full object-cover" width={1000} height={1000} src={slide} alt={`Slide ${index} image`}/>
+				</swiper-slide>
+			))}
+		</swiper-container>
+		<button id="sliderButtonNext" class="hidden lg:block absolute top-1/2 right-[40px] hover:cursor-pointer z-[30]">
+			<Image src={arrowForwardIcon} alt='Arrow forward icon'/>
+		</button>
+	</section>
+	<section class="text-black mt-16" id="contact">
 		<h2 class="text-[60px] text-center mb-12">G<span class="text-[50px]">ET</span>&nbsp;A Q<span class="text-[50px]">UOTE</span></h2>
 		<form action="#" class="w-full lg:w-[400px] flex flex-col items-stretch gap-3 mx-auto [&>label]:flex [&>label]:flex-col [&>label]:items-stretch">
 			<label class="flex flex-col items-stretch gap-1">

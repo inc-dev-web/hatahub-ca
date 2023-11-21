@@ -1,9 +1,9 @@
 ---
-const BUTTON_STYLES_GENERAL = 'tracking-widest block rounded-lg'
+const BUTTON_STYLES_GENERAL = 'tracking-widest block rounded-lg transition-all'
 
 const BUTTON_STYLES = {
-  'outline': "px-16 py-3 border border-[#28e48e]",
-  'success': "px-16 py-3 bg-[#28E48E] text-white shadow",
+  'outline': "px-16 py-3 border border-[#28e48e] hover:bg-[#28e48e]",
+  'success': "px-16 py-3 bg-[#28E48E] text-white shadow hover:bg-white hover:text-[#28E48E]",
 } as const
 
 type ButtonStyle = keyof typeof BUTTON_STYLES
