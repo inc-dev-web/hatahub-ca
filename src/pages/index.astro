@@ -127,28 +127,28 @@ const presentationSlides = Array.from({length: 26}, (_, i) => i + 1).map(value =
 	</section>
 	<section class="text-black mt-16" id="contact">
 		<h2 class="text-[60px] text-center mb-12">G<span class="text-[50px]">ET</span>&nbsp;A Q<span class="text-[50px]">UOTE</span></h2>
-		<form action="#" class="w-full lg:w-[400px] flex flex-col items-stretch gap-3 mx-auto [&>label]:flex [&>label]:flex-col [&>label]:items-stretch">
+		<form id="contactForm" action="#" class="w-full lg:w-[400px] flex flex-col items-stretch gap-3 mx-auto [&>label]:flex [&>label]:flex-col [&>label]:items-stretch">
 			<label class="flex flex-col items-stretch gap-1">
 				Name*
-				<input placeholder="Enter your name here (required)" class="border border-[#608273]/50 py-2 pl-5 rounded-md" type="text" required/>
+				<input id="contactForm_name" placeholder="Enter your name here (required)" class="border border-[#608273]/50 py-2 pl-5 rounded-md" type="text" required/>
 			</label>
 			<label class="flex flex-col items-stretch gap-1">
 				E-mail*
-				<input placeholder="Enter your e-mail here (required)" class="border border-[#608273]/50 py-2 pl-5 rounded-md" type="email" required/>
+				<input id="contactForm_email" placeholder="Enter your e-mail here (required)" class="border border-[#608273]/50 py-2 pl-5 rounded-md" type="email" required/>
 			</label>
 			<label class="flex flex-col items-stretch gap-1">
 				Phone number
-				<input placeholder="Enter your phone number here (optional)" class="border border-[#608273]/50 py-2 pl-5 rounded-md" type="text" required/>
+				<input id="contactForm_phoneNumber" placeholder="Enter your phone number here (optional)" class="border border-[#608273]/50 py-2 pl-5 rounded-md" type="text" />
 			</label>
 			<label class="flex flex-col items-stretch gap-1">
 				Additional information
-				<textarea placeholder="Enter additional information here (optional)" class="border border-[#608273]/50 py-2 pl-5 rounded-md" required/>
+				<textarea id="contactForm_additionalInformation" placeholder="Enter additional information here (optional)" class="border border-[#608273]/50 py-2 pl-5 rounded-md" />
 			</label>
 			<label class="flex flex-col items-stretch gap-1">
 				Attachment (optional)
-				<input class="border border-[#608273]/50 rounded-lg bg-[#608273]/20 pl-2 py-2 hover:cursor-pointer" type="file"/>
+				<input id="contactForm_attachment" class="border border-[#608273]/50 rounded-lg bg-[#608273]/20 pl-2 py-2 hover:cursor-pointer" type="file"/>
 			</label>
-			<input class="px-16 py-3 bg-[#28E48E] text-white shadow rounded-lg" type="submit"/>
+			<button class="px-16 py-3 bg-[#28E48E] text-white shadow rounded-lg" type="submit">Submit</button>
 		</form>
 	</section>
 	<footer id="footer" class="bg-[#E1E0DA] text-black mt-16 px-6">
@@ -213,6 +213,28 @@ section {
 import { register, type SwiperContainer } from 'swiper/element/bundle';
 register()
 
+const readFileAsDataUrl = (file: File): Promise<string> => {
+	return new Promise((resolve, reject) => {
+		const fileReader = new FileReader()
+
+		fileReader.addEventListener(
+			'load',
+			() => {
+				resolve(fileReader.result as string)
+			}
+		)
+
+		fileReader.addEventListener(
+			'error',
+			(err) => {
+				reject(err)
+			}
+		)
+
+		fileReader.readAsDataURL(file)
+	})
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 	const swiperContainer = document.getElementById('sliderContainer') as SwiperContainer
 	const prevButton = document.getElementById('sliderButtonPrev')
@@ -224,6 +246,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	nextButton?.addEventListener('click', () => {
 		swiperContainer.swiper.slideNext()
+	})
+
+	const attachmentInput = document.getElementById('contactForm_attachment') as HTMLInputElement
+
+	const FILE_SIZE_LIMIT = 5_242_880 //5MB
+
+	//upload file size limiter
+	attachmentInput.addEventListener('change', (ev) => {
+		if(!attachmentInput.files) return 
+
+		if(attachmentInput.files[0].size > FILE_SIZE_LIMIT) {
+			alert('Maximum file size is 5MB!')
+			attachmentInput.value = "";
+			ev.preventDefault()
+		}
+	})
+
+	const contactForm = document.getElementById('contactForm') as HTMLFormElement
+
+	contactForm.addEventListener('submit', async (ev) => {
+		ev.preventDefault()
+
+		const nameInput = document.getElementById('contactForm_name') as HTMLInputElement
+		const emailInput = document.getElementById('contactForm_email') as HTMLInputElement
+		const phoneNumberInput = document.getElementById('contactForm_phoneNumber') as HTMLInputElement
+		const additionalInformationInput = document.getElementById('contactForm_additionalInformation') as HTMLInputElement
+		const attachmentInput = document.getElementById('contactForm_attachment') as HTMLInputElement
+
+		const name = nameInput.value
+		const email = emailInput.value
+		const phoneNumber = phoneNumberInput.value
+		const additionalInformation = additionalInformationInput.value
+		const attachmentFile = attachmentInput.files?.[0]
+
+		const attachment = attachmentFile ? await readFileAsDataUrl(attachmentFile) : undefined
+
+		const formData = {
+			name,
+			email,
+			phoneNumber,
+			additionalInformation,
+			attachment
+		}
+
+    await fetch('https://mailchannels.hatahub.ca', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
 	})
 })
 
@@ -254,4 +327,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 		});
 	});
 });
+
+
 </script>
