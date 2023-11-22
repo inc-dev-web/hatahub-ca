@@ -23,13 +23,23 @@ interface Props { }
 	<body>
 		<slot />
 
-		<script async src="https://static.wdgtsrc.com/assets/loader.js" data-chats-widget-id="d37e752d-b8cf-4ed6-9c92-9e7acce994db"></script>
-		<script type="text/javascript">
+		<script is:inline async src="https://static.wdgtsrc.com/assets/loader.js" data-chats-widget-id="d37e752d-b8cf-4ed6-9c92-9e7acce994db"></script>
+		<script is:inline type="text/javascript">
 			script = document.createElement('script')
 			script.src = 'https://static.wdgtsrc.com/assets/loader.js';
 			script.async = true;
 			script.setAttribute("data-chats-widget-id",'d37e752d-b8cf-4ed6-9c92-9e7acce994db');
 			document.head.appendChild(script);
 		</script>
+
+		<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-48CVCF1KZL"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-48CVCF1KZL');
+		</script>
+
 	</body>
 </html>
