@@ -16,14 +16,17 @@ import thumbUpIcon from '../assets/icons/thumb-up.svg'
 import outlineDiamondIcon from '../assets/icons/outline-diamond.svg'
 import personIcon from '../assets/icons/person.svg'
 import gearIcon from '../assets/icons/gear.svg'
+import hamburgerIcon from '../assets/icons/hamburger.svg'
 
 import arrowBackIcon from '../assets/icons/arrow-back.svg'
 import arrowForwardIcon from '../assets/icons/arrow-forward.svg'
 import worldMap from '../assets/world.svg'
 
 import interior1 from '../assets/interior-1.jpg'
-import interior2 from '../assets/interior-2.jpg'
+import interior2 from '../assets/interior-2.webp'
+import products from '../assets/products.webp'
 import Icon from 'astro-icon';
+import MobileNavigationMenu from '../components/MobileNavigationMenu.astro';
 
 const features = [
 	{
@@ -48,21 +51,26 @@ const presentationSlides = Array.from({length: 26}, (_, i) => i + 1).map(value =
 ---
 
 <Layout>
-	<div class="relative grid place-items-center w-full h-[100dvh]" id="home">
-		<header id="mainHeader" class="lg:fixed left-0 top-0 w-full flex flex-col items-center z-[30] py-3 transition-all">
+	<div class="relative grid place-items-center w-full h-[100vh]" id="home">
+		<MobileNavigationMenu />
+
+		<header id="mainHeader" class="fixed left-0 top-0 w-full flex flex-col items-center z-[30] py-3 transition-all">
 			<div class="container flex flex-row items-center justify-between">
-				<Image height={80} src={logoImage} alt="HataHub logo"/>
+				<Image class="h-[60px] lg:h-[80px]" height={80} src={logoImage} alt="HataHub logo"/>
 				<div class="hidden lg:flex flex-row gap-10 items-center hover:[&>a]:underline">
 					<a href="#home">home</a>
 					<a href="#aboutUs">about us</a>
-					<a href="#products">products</a>
-					<a href="#presentation">presentation</a>
+					<a href="#products">our products</a>
+					<a href="#whereWeWork">where we work?<a>
 					<a href="#footer">contacts</a>
 				</div>
+				<button class="mobile-navigation-activator px-6 py-4">
+					<Image height={40} src={hamburgerIcon} alt="Navigation menu button"/>
+				</button>
 			</div>
 		</header>
 
-		<div class="flex flex-col items-center relative z-[20] w-3/4 text-center gap-6">
+		<div class="flex flex-col items-center relative z-[20] w-3/4 text-center gap-6 pt-12 lg:pt-0">
 			<h1 class="text-[30px] lg:text-[60px] text-white">
 				European Window and Door Excellence – Now in Canada
 			</h1>
@@ -77,7 +85,7 @@ const presentationSlides = Array.from({length: 26}, (_, i) => i + 1).map(value =
 	<section id="features">
 		<div class="container flex flex-col lg:flex-row justify-around mx-auto py-16">
 			{features.map((feature) => (
-				<div class="flex flex-col items-center gap-6">
+				<div class="flex flex-col-reverse lg:flex-col items-center gap-2 py-2 lg:py-0 lg:gap-6">
 					<span class="text-black/90">{feature.title}</span>
 					<Image class="opacity-[90%]" width={40} alt={`${feature.title} icon`} src={feature.icon}/>
 				</div>
@@ -91,7 +99,7 @@ const presentationSlides = Array.from({length: 26}, (_, i) => i + 1).map(value =
 			<div class="flex flex-col items-start justify-center gap-6 text-black">
 				<h2 class="text-[60px]">A<span class="text-[50px]">BOUT US</span></h2>
 				<span>
-					Discover the epitome of European sophistication with HATAHUB LTD, your premier source for exquisitely crafted aluminum and uPVC windows and doors in Ontario. Situated in the heart of Toronto, we extend our reach to cities such as London, Ottawa, Windsor, Hamilton, and beyond, imparting a touch of European finesse to every corner of the province. Our collection features German-engineered windows and doors that embody a legacy of unparalleled quality and precision. Emphasizing high-grade German profiles and hardware, our products transcend mere installations—they are statements of luxury and efficiency. Our unwavering commitment to authenticity ensures that each piece we offer is a genuine European creation, meticulously designed to enhance the architecture and ambiance of your home.
+					Discover Elegance with HATAHUB LTD: Premium European Windows & Doors Now in Canada. Unmatched Quality, Exceptional Design, Tailored for Your Home. Experience the Blend of Tradition and Innovation in Every Product We Offer
 				</span>
 				<AppButton buttonStyle='success' href="#contact">get a quote</AppButton>
 			</div>
@@ -100,30 +108,29 @@ const presentationSlides = Array.from({length: 26}, (_, i) => i + 1).map(value =
 	<section class="py-20" id="products">
 		<div class="container mx-auto flex flex-col-reverse items-stretch lg:grid grid-cols-2 gap-8 lg:gap-32">
 			<div class="flex flex-col items-end lg:items-start justify-center gap-6 text-black lg:text-left text-right">
-				<h2 class="text-[60px] ">P<span class="text-[50px]">RODUCTS</span></h2>
+				<h2 class="text-[60px] ">
+					O<span class="text-[50px]">UR</span> 
+					P<span class="text-[50px]">RODUCTS</span>
+				</h2>
 				<span class="lg:text-left text-right">
-					Whether you're undertaking renovations in London, constructing a new residence in Ottawa, rejuvenating your estate in Windsor, or updating a historic home in Hamilton, our doors and windows come with a promise: to deliver unparalleled European quality and performance. We provide an extensive array of colors and styles, carefully curated to complement the diverse Canadian palette and preferences. Rest assured, our products are backed by up to a 7-year warranty, ensuring enduring satisfaction. Through our direct collaboration with a distinguished Ukrainian manufacturer, we not only guarantee European quality but also remarkable turnaround times, with production and delivery achievable within 8 weeks. HATAHUB LTD is dedicated to bringing European standards to Canadian soil, ensuring that, no matter where you are in Ontario, you can experience the pinnacle of European craftsmanship.
+					Experience superior craftsmanship with HATAHUB LTD’s range of European windows and doors. Engineered for elegance and durability, our products blend advanced German technology with contemporary design, offering unparalleled quality to enhance your spaces in Canada.
 				</span>
 				<AppButton buttonStyle='success' href="#contact">get a quote</AppButton>
 			</div>
-			<Image class="object-[100%] aspect-square" src={worldMap} alt="About us section image"/>
+			<Image class="object-[100%] aspect-square" src={products} alt="Products section image"/>
 		</div>
 	</section>
-	<section class="text-black relative" id="presentation">
-		<h2 class="text-[40px] lg:text-[60px] text-center mb-12">O<span class="text-[30px] lg:text-[50px]">UR</span> P<span class="text-[30px] lg:text-[50px]">RESENTATION</span></h2>
-		<button id="sliderButtonPrev" class="hidden lg:block absolute top-1/2 left-[40px] hover:cursor-pointer z-[30]">
-			<Image src={arrowBackIcon} alt='Arrow back icon'/>
-		</button>
-		<swiper-container class="max-w-[100dvw] overflow-hidden" id="sliderContainer" initial-slide="0" effect="cards" slides-per-view="1.5" centered-slides="true" cards-effect-per-slide-offset="20" cards-effect-rotate="false">
-			{presentationSlides.map((slide, index) => (
-				<swiper-slide class="opacity-50 [&.swiper-slide-active]:!opacity-100 transition-all w-[400px]">
-					<Image class="h-full w-full object-cover" width={1000} height={1000} src={slide} alt={`Slide ${index} image`}/>
-				</swiper-slide>
-			))}
-		</swiper-container>
-		<button id="sliderButtonNext" class="hidden lg:block absolute top-1/2 right-[40px] hover:cursor-pointer z-[30]">
-			<Image src={arrowForwardIcon} alt='Arrow forward icon'/>
-		</button>
+	<section class="py-20" id="whereWeWork">
+		<div class="container mx-auto flex flex-col items-stretch lg:grid grid-cols-2 gap-6 lg:gap-32">
+			<Image class="object-[100%] aspect-square" src={worldMap} alt="About us section image"/>
+			<div class="flex flex-col items-start justify-center gap-6 text-black">
+				<h2 class="text-[60px]">W<span class="text-[50px]">HERE WE WORK</span></h2>
+				<span>
+					At HATAHUB LTD, we are proud to serve the vibrant and diverse communities across Ontario. From the bustling streets of Toronto and Ottawa to the dynamic neighborhoods of Mississauga and Brampton, we bring our expertise in European windows to each corner of the province. Whether you're in the historic city of Hamilton, the thriving hub of London, or the growing areas of Markham and Vaughan, our commitment to quality and service remains the same. We also cater to the unique needs of Kitchener and Windsor, ensuring that each city’s distinct character is reflected in our offerings. Wherever you are in Ontario, HATAHUB LTD is here to enhance your spaces with the finest European windows
+				</span>
+				<AppButton buttonStyle='success' href="#contact">get a quote</AppButton>
+			</div>
+		</div>
 	</section>
 	<section class="text-black mt-16" id="contact">
 		<h2 class="text-[60px] text-center mb-12">G<span class="text-[50px]">ET</span>&nbsp;A Q<span class="text-[50px]">UOTE</span></h2>
@@ -210,8 +217,6 @@ section {
 </style>
 
 <script>
-import { register, type SwiperContainer } from 'swiper/element/bundle';
-register()
 
 const readFileAsDataUrl = (file: File): Promise<string> => {
 	return new Promise((resolve, reject) => {
@@ -236,18 +241,6 @@ const readFileAsDataUrl = (file: File): Promise<string> => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-	const swiperContainer = document.getElementById('sliderContainer') as SwiperContainer
-	const prevButton = document.getElementById('sliderButtonPrev')
-	const nextButton = document.getElementById('sliderButtonNext')
-
-	prevButton?.addEventListener('click', () => {
-		swiperContainer.swiper.slidePrev()
-	})
-
-	nextButton?.addEventListener('click', () => {
-		swiperContainer.swiper.slideNext()
-	})
-
 	const attachmentInput = document.getElementById('contactForm_attachment') as HTMLInputElement
 
 	const FILE_SIZE_LIMIT = 5_242_880 //5MB

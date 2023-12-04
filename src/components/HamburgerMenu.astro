@@ -1,0 +1,122 @@
+---
+interface Props {
+  activatorSelector: string,
+  debugOpen?: boolean,
+  contentWidth?: string,
+  background?: string,
+  contentsClass?: string,
+  closingActivatorSelector?: string
+}
+
+const { activatorSelector, debugOpen = false, contentWidth = "80vw", background = "#000", contentsClass = "", closingActivatorSelector = "" } = Astro.props
+---
+
+<hamburger-menu role="dialog" aria-modal={debugOpen} data-activator={activatorSelector} data-closer={closingActivatorSelector}>
+  <div class={`menu__contents ${contentsClass}`}>
+    <slot />
+  </div>
+</hamburger-menu>
+
+<script>
+  class HamburgerMenu extends HTMLElement {
+    public open() {
+      this.ariaModal = "true";
+      this.style.display = 'grid';
+      document.documentElement.style.setProperty('overflow', 'hidden');
+      window.requestAnimationFrame(() => {
+        this.style.setProperty('z-index', '100');
+        this.classList.add('open');
+      })
+    }
+
+    public close() {
+      this.classList.remove('open');
+      this.addEventListener('transitionend', () => {
+        this.style.setProperty('z-index', '-100');
+        this.ariaModal = "false";
+        document.documentElement.style.setProperty('overflow', 'visible');
+      }, {
+        once: true
+      })
+    }
+
+    constructor() {
+      super();
+
+      const activator = this.dataset.activator ?? "";
+      const activators = document.querySelectorAll(activator);
+
+      activators.forEach(currentActivator => {
+        currentActivator.addEventListener('click', () => this.open()) 
+      })
+
+      const closer = this.dataset.closer ?? "";
+
+      const closingActivators = document.querySelectorAll(closer);
+
+      closingActivators.forEach(currentActivator => {
+        currentActivator.addEventListener('click', () => this.close()) 
+      })
+
+      this.style.setProperty('z-index', '-100');
+      this.style.display = 'none';
+
+      const contentWrapper = this.querySelector('.menu__contents');
+
+      if(contentWrapper) {
+        contentWrapper.addEventListener('click', (event) => {
+          event.stopPropagation();
+        });
+      }
+
+      this.addEventListener('click', () => this.close())
+
+      if(this.ariaModal === "true")
+        this.open()
+    }
+  }
+
+  customElements.define('hamburger-menu', HamburgerMenu);
+</script>
+
+<style lang="scss" define:vars={{contentWidth, background}} is:global>
+  hamburger-menu {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    height: 100dvh;
+    width: 100%;
+
+    transition-property: opacity;
+    transition-duration: .5s;
+
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+
+    .menu__contents {
+      position: relative;
+
+      width: var(--contentWidth);
+      transform: translateX(-100%);
+      background: var(--background);
+
+      transition: .5s transform ease-in-out;
+    }
+
+    &.open {
+      opacity: 1;
+
+      .menu__contents {
+        transform: translateX(0);
+      }
+    }
+
+    &[aria-modal='true'] {
+      display: block;
+      justify-content: start;
+      align-items: stretch;
+    }
+  }
+</style>

@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import HamburgerMenu from "./HamburgerMenu.astro";
+import logoImage from '../assets/logo-dark.svg'
+---
+
+<HamburgerMenu 
+  closingActivatorSelector=".close-navigation-menu" 
+  contentsClass="grid justify-center" 
+  activatorSelector=".mobile-navigation-activator" 
+  background="#E1E0DA"
+>
+  <div class="flex flex-col items-stretch gap-16 px-6 py-10 box-border w-full">
+    <div class="flex justify-between w-full items-center">
+      <Image class="h-[60px] lg:h-[80px]" height={80} src={logoImage} alt="HataHub logo"/>
+      <span class="font-heading text-black/90 text-2xl">HataHub</span>
+    </div>
+    <div class="flex flex-col gap-10 items-center hover:[&>a]:underline text-black/90 close-navigation-menu">
+      <a href="#home">home</a>
+      <a href="#aboutUs">about us</a>
+      <a href="#products">our products</a>
+      <a href="#whereWeWork">where we work?<a>
+      <a href="#footer">contacts</a>
+    </div>
+  </div>
+</HamburgerMenu>
